@@ -1,9 +1,11 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
-from .auth import get_current_user, get_db
-from .models import Note
-from .schemas import NoteCreate, NoteOut
+from app.api.auth import get_current_user
+from app.db.database import get_db
+from app.db.models import Note
+from app.schemas.schemas import NoteCreate, NoteOut
+
 
 router = APIRouter(prefix="/notes", tags=["notes"])
 
