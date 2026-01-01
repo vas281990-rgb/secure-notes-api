@@ -16,8 +16,9 @@ class NoteCreate(BaseModel):
     content: str
 
 
-class NoteOut(NoteCreate):
+class NoteOut(BaseModel):
     id: int
+    title: str
+    content: str
 
-    class Config:
-        from_attributes = True
+    model_config = {"from_attributes": True}

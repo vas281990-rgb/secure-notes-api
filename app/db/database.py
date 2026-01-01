@@ -5,26 +5,16 @@ DATABASE_URL = "sqlite:///./notes.db"
 
 engine = create_engine(
     DATABASE_URL,
-    connect_args={"check_same_thread": False}
+    connect_args={"check_same_thread": False},
 )
 
-SessionLocal = sessionmaker(
-    autocommit=False,
-    autoflush=False,
-    bind=engine
-)
-
+SessionLocal = sessionmaker(bind=engine)
 Base = declarative_base()
 
 
 def get_db():
-    """
-    FastAPI dependency.
-    One DB session per request.
-    """
     db = SessionLocal()
     try:
         yield db
     finally:
         db.close()
-
